@@ -1,0 +1,32 @@
+<configuration>
+    <appender name="myConsoleAppender" class = "ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- File appender -->
+    <appender name = "myFileAppender" class = "ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>eventRegistration.log</file>
+        <rollingPolicy class = "ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logFile.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>5MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger-->
+    <root level = "INFO">
+        <appender-ref ref = "myConsoleAppender"/>
+    </root>
+    <logger name="com.basicAuthOAuth2.basicAuthOAuth2.aop" level="DEBUG">
+        <appender-ref ref="myFileAppender" />
+    </logger>
+</configuration>
